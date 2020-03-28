@@ -1,0 +1,59 @@
+﻿@model Exercises.Models.ViewModels.StudentVM
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3">
+        @Html.Partial("StudentNav")
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <div class="row">
+            <div class="col-xs-12">
+                <h3>Add Student</h3>
+                <div class="row">
+                    
+                    @using (Html.BeginForm())
+                    {
+                        <div class="col-xs-12 col-sm-7">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">Personal Details</h4>
+                                </div>
+                                <div class="panel-body">         
+                                    <div class="form-group">
+                                        <label>First Name:</label>
+                                        @Html.TextBoxFor(m => m.Student.FirstName, new { @class = "form-control" })
+                                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.FirstName)</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Last Name:</label>
+                                        @Html.TextBoxFor(m => m.Student.LastName, new { @class = "form-control" })
+                                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.LastName)</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Major:</label>
+                                        @Html.DropDownListFor(m => m.Student.Major.MajorId, Model.MajorItems, "-Choose One-", new { @class = "form-control" })
+                                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.Major.MajorId)</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>GPA:</label>
+                                        @Html.TextBoxFor(m => m.Student.GPA, new { @class = "form-control" })
+                                        <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.GPA)</span>
+                                    </div>
+                                    <h4>Courses</h4>
+                                    <div class="form-group">
+                                        @Html.ListBoxFor(m => m.SelectedCourseIds, Model.CourseItems, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.SelectedCourseIds, "", new { @class = "text-danger" })
+                                    </div>
+                                    <button class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

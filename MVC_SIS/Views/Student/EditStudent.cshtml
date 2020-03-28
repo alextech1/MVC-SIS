@@ -1,0 +1,71 @@
+﻿@model Exercises.Models.ViewModels.StudentVM
+
+@{
+    ViewBag.Title = "EditStudent";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Edit Student</h3>
+        @Html.ActionLink("Return to List", "List", "Student")
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm())
+        {
+
+            <div class="form-group">
+                @Html.HiddenFor(m => m.Student.StudentId)
+                <label>First Name:</label>
+                @Html.TextBoxFor(m => m.Student.FirstName, new { @class = "form-control" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.FirstName)</span>
+            </div>
+            <div class="form-group">
+                <label>Last Name:</label>
+                @Html.TextBoxFor(m => m.Student.LastName, new { @class = "form-control" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.LastName)</span>
+            </div>
+
+            <label>Major:</label>
+            @Html.DropDownListFor(x => x.Student.Major.MajorId, Model.MajorItems, new { @class = "form-control" })
+
+            <div class="form-group">
+                <label>GPA:</label>
+                @Html.TextBoxFor(m => m.Student.GPA, new { @class = "form-control" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.GPA)</span>
+            </div>
+
+            <label>Courses</label>
+            <div class="form-group">
+                @Html.ListBoxFor(m => m.SelectedCourseIds, Model.CourseItems, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.SelectedCourseIds, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <label>Address Street 1:</label>
+                @Html.TextBoxFor(m => m.Student.Address.Street1, new { @class = "form-control" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.Address.Street1)</span>
+            </div>
+
+            <div class="form-group">
+                <label>Address Street 2:</label>
+                @Html.TextBoxFor(m => m.Student.Address.Street2, new { @class = "form-control" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.Address.Street2)</span>
+            </div>
+            <div class="form-group">
+                <label>City:</label>
+                @Html.TextBoxFor(m => m.Student.Address.City, new { @class = "form-control" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.Address.City)</span>
+            </div>
+
+            <div class="form-group">
+                <label>State Name:</label>
+                @Html.DropDownListFor(m => m.Student.Address.State.StateAbbreviation, Model.StateItems, new { @class = "form-control" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.Student.Address.State.StateAbbreviation)</span>
+            </div>
+
+            <button class="btn btn-primary">Save</button>
+        }
+    </div>
+</div>

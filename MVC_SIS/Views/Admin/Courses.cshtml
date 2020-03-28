@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Exercises.Models.Data.Course>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+<div class="row">
+    <div class="col-xs-12 col-sm-3">
+        @Html.Partial("StudentNav")
+    </div>
+    <div class="col-xs-12 col-sm-9">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>Student List</h4>
+                <p>@Html.ActionLink("Add a Course", "AddCourse", "Admin", null, new { @class = "btn btn-primary" })</p>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in Model)
+                        {
+                            <tr>
+                                <td>@course.CourseName</td>
+                                <td>@Html.ActionLink("Edit", "EditCourse", "Admin", new { id = course.CourseId }, null) </td>
+                                <td>@Html.ActionLink("Delete", "DeleteCourse", "Admin", new { id = course.CourseId }, null) </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
